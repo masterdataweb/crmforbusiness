@@ -160,6 +160,11 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
   <script src="js/respond.js"></script>
   <![endif]-->
 
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+ function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
+</script>
+
   </head>
 
   <body>
@@ -214,7 +219,11 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
             <p class="form-text">Заполните форму для регистрации и начните пользоваться лучшей CRM в мире уже сейчас</p>
             <div class="thank text-white text-center"></div>
 
+          
+
             <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+              <input type=hidden name='captcha_settings' value='{"keyname":"NewCaptcha","fallback":"true","orgId":"00D200000008P1X","ts":""}'>
+              <input type=hidden name="retURL" value="https://crmforbusiness.ru/">
               <input name="Campaign_ID" type="hidden" value="701D0000001rVIGIA2" />
               <input type=hidden name="oid" value="00D200000008P1X"/>
               <input type=hidden name="00N20000001fxUq" value= "Потенциальный клиент"/>
@@ -237,6 +246,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
                   <input type="text" id="company" name="company" placeholder="Компания"  class="form-control" required="true" >
                 </div>
               </div>
+              <div class="g-recaptcha" data-sitekey="6LcBWX0UAAAAAIsM4zqlvZjJsRncsmV6_xZ3G-BN"></div>
               <div class="form-row">
                   <div class="form-group mb-1 mb-md-2 px-0 col-10 offset-1 offset-md-1 offset-lg-2  col-lg-8">
                       <button type="submit" value="Send" class="btn btn-primary mx-auto text-uppercase  w-100" onClick="ga('send', 'event', 'Knopka', 'Podtverdit'); return true;">Протестируйте бесплатно</button>
